@@ -29,7 +29,7 @@ body {
   display: flex;
   justify-content: space-around;
   margin-top: 13vh;
-  border: 1px solid white;
+
   height: 120px;
 }
 
@@ -54,6 +54,23 @@ body {
     cursor: pointer;
     transform: scale(1.1);
 }
+
+.button.new-game-btn {
+  font-size: 21px;
+}
+
+
+.points-3 {
+ background-image: url('../../assets/3-points.png');
+ background-repeat: no-repeat;
+ background-position: center;
+}
+
+.points-5 {
+  background-image: url('../../assets/5-points.png');
+  background-repeat: no-repeat;
+  background-position: center;
+ }
 
 .header {
     height: 6vw;
@@ -91,6 +108,7 @@ border: 1px solid white;
 .lizard.arena,
 .spock.arena {
     position: relative;
+    border-radius: 50%;
 }
 
 .ch-3:hover, .ch-5:hover {
@@ -250,6 +268,10 @@ border: 1px solid white;
             transform: translateX(-200%) rotate(180deg);
   }
 
+  .pulse {
+    animation: pulse 2s infinite;
+    transition: 0.2s linear;
+  }
 
   svg.checkbox{
     position: absolute;
@@ -263,7 +285,7 @@ border: 1px solid white;
 
   svg.checkbox .is_checked{
     opacity: 0;
-    fill: yellow;
+    fill: #fff;
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
     -webkit-transform: translateX(200%) rotate(45deg);
@@ -274,7 +296,7 @@ border: 1px solid white;
 
   svg.checkbox .is_unchecked{
     opacity: 1;
-    fill: #fff;
+    fill: yellow;
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
     -webkit-transform: translateX(0) rotate(0deg);
@@ -286,31 +308,69 @@ border: 1px solid white;
   @-webkit-keyframes animateRing{
     to{
       stroke-dashoffset: 0;
-      stroke: #b0aa28;
+      stroke: #233043;
     }
   }
 
   @keyframes animateRing{
     to{
       stroke-dashoffset: 0;
-      stroke: #b0aa28;
+      stroke: #233043;
     }
   }
 
   @-webkit-keyframes resetRing{
     to{
       stroke-dashoffset: 0;
-      stroke: #233043;
+      stroke: #b0aa28;
     }
   }
 
   @keyframes resetRing{
     to{
       stroke-dashoffset: 0;
-      stroke: #233043;
+      stroke: #b0aa28;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(238, 255, 0, 0.6);
+    }
+
+    50% {
+      box-shadow: 0 0 0 20px rgba(204, 169, 44, 0.1);
+      transform: scale(1.2);
+    }
+
+    70% {
+      box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
     }
   }
 
   /* Switch 3 Specific Style End */
 
 
+  @media screen and (max-width: 700px) {
+    .main {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .choice-3 {
+      margin: 0 auto;
+
+
+    }
+
+    .choice-5 {
+
+    }
+
+
+  }

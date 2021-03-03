@@ -2,6 +2,29 @@ import React, { Component } from "react";
 import '../styles/styles.css';
 
 export class ChoiceThree extends Component {
+    constructor(props) {
+        super(props)
+        this.keyPress = this.keyPress.bind(this)
+
+        document.addEventListener('keyup', (e) => {
+            this.keyPress(e);
+        })
+    }
+
+
+
+keyPress (e) {
+    if (e.key === '1') {
+        this.props.start('rock')
+    } else if (e.key === '2') {
+        this.props.start('scissors')
+    } else if (e.key === '3') {
+        tthis.props.start('papper')
+    }
+}
+
+
+
     render() {
         return (
             <div className="choice-3">
@@ -15,6 +38,31 @@ export class ChoiceThree extends Component {
 }
 
 export class ChoiceFive extends Component {
+    constructor(props) {
+        super(props)
+        this.keyPress = this.keyPress.bind(this)
+
+        document.addEventListener('keyup', (e) => {
+            this.keyPress(e);
+        })
+    }
+
+
+
+    keyPress (e) {
+        if (e.key === '1') {
+            this.props.start('rock')
+        } else if (e.key === '2') {
+            this.props.start('scissors')
+        } else if (e.key === '3') {
+            this.props.start('papper')
+        } else if ((e.key === '4')) {
+            this.props.start('lizard')
+        } else if ((e.key === '5')) {
+            this.props.start('spock')
+        }
+
+}
     render() {
         return (
             <div className="choice-5">

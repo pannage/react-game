@@ -5,7 +5,9 @@ import {Arena2} from "./arena.jsx";
 import {Arena3} from "./arena.jsx";
 import {ChoiceThree} from "./choice.jsx";
 import {ChoiceFive} from "./choice.jsx";
+
 import '../styles/styles.css';
+
 
 export default class PlayBoard extends Component {
     constructor(props) {
@@ -22,7 +24,8 @@ export default class PlayBoard extends Component {
             resultMessage: '',
             playerScore: 0,
             comp1Score: 0,
-            comp2Score: 0
+            comp2Score: 0,
+
         }
         this.startPlay = this.startPlay.bind(this)
         this.chooseWinner2Playes = this.chooseWinner2Playes.bind(this)
@@ -56,7 +59,7 @@ export default class PlayBoard extends Component {
 
         this.setState({isChoiseFieldVisible: false, isArenavisible: true, myPick: myPick})
 
-        if (playersNum ===2 ) {
+        if (playersNum === 2 ) {
             setTimeout (() => {this.setState({comp1Pick: pickedImg})}, 1000)
 
             let winner = this.chooseWinner2Playes (myPick, pickedImg)
@@ -76,8 +79,33 @@ export default class PlayBoard extends Component {
 
     }
 
+    componentDidUpdate() {
+        if (this.props.newGame) {
+            this.newGame();
+            this.props.onNewGameStarted();
+        }
+    }
+
+    newGame () {
+        this.setState({
+            isChoiseFieldVisible: true,
+            isArenavisible: false,
+            myPick: '',
+            comp1Pick: '',
+            comp2Pick: '',
+            isPlayerWin: null,
+            isComp1Win: null,
+            isComp2Win: null,
+            resultMessage: '',
+            playerScore: 0,
+            comp1Score: 0,
+            comp2Score: 0
+        })
+    }
+
     replay () {
-        this.setState({isChoiseFieldVisible: true,
+        this.setState({
+        isChoiseFieldVisible: true,
         isArenavisible: false,
         myPick: '',
         comp1Pick: '',
@@ -88,7 +116,7 @@ export default class PlayBoard extends Component {
         resultMessage: '', })
     }
 
-    chooseWinner2Playes (P1Pick, P2Pick, playerTags) {
+    chooseWinner2Playes (P1Pick, P2Pick, playerTags = { p1: 'P1', p2: 'P2'}) {
 
         if (P1Pick === 'rock' && (P2Pick === 'scissors' || P2Pick === 'lizard')) {
            return playerTags.p1
@@ -187,8 +215,12 @@ export default class PlayBoard extends Component {
     render() {
         const choiceTable = this.props.fieldSize === 3 ? <ChoiceThree start={this.startPlay} fieldSize = {this.props.fieldSize} playersNum = {this.props.playersNum}/> :
             <ChoiceFive start={this.startPlay} fieldSize = {this.props.fieldSize} playersNum = {this.props.playersNum}/>;
-        const arena = this.props.playersNum === 2 ? <Arena2 pick={this.state.myPick} comp1={this.state.comp1Pick} message={this.state.resultMessage} replay={this.replay}/> :
-            <Arena3 pick={this.state.myPick} comp1={this.state.comp1Pick} comp2={this.state.comp2Pick} message={this.state.resultMessage} replay={this.replay}/>
+        const arena = this.props.playersNum === 2 ? <Arena2 pick={this.state.myPick}
+                    comp1={this.state.comp1Pick} message={this.state.resultMessage}
+                    replay={this.replay} playerWin={this.state.isPlayerWin} comp1Win = {this.state.isComp1Win}/> :
+            <Arena3 pick={this.state.myPick} comp1={this.state.comp1Pick}
+                    comp2={this.state.comp2Pick} message={this.state.resultMessage}
+                    replay={this.replay}  playerWin={this.state.isPlayerWin} comp1Win = {this.state.isComp1Win} comp1Win = {this.state.isComp2Win}/>
         const score = this.props.playersNum === 2 ? <Score2 playerScore = {this.state.playerScore} comp1Score = {this.state.comp1Score}/> :
         <Score3 playerScore = {this.state.playerScore} comp1Score = {this.state.comp1Score} comp2Score = {this.state.comp2Score}/>
 
