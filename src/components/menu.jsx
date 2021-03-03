@@ -4,11 +4,24 @@ import '../styles/styles.css';
 export default class Menu extends Component {
     constructor(props) {
         super(props)
+        this.state ={
+            isDark: false,
+            isModalVisible:false
+        }
+
+
         this.keyPress = this.keyPress.bind(this)
 
         document.addEventListener('keyup', (e) => {
             this.keyPress(e);
         })
+    }
+
+    onThemeChange () {
+        this.setState ({isDark: !this.state.isDark})
+            document.body.classList.toggle('dark')
+
+
     }
 
 
@@ -31,6 +44,24 @@ export default class Menu extends Component {
     render() {
         return (
             <div className="menu-wrapper">
+                                {
+                    this.state.isModalVisible ? (
+                        <div className="rules">
+                            <div>Горячие клавиши:</div>
+                            <div>1,2,3,4,5 - ваш выбор</div>
+                            <div>q и w - выбор количества играков</div>
+                            <div>a и s - выбор поля</div>
+                            <div>esc - начать сначала</div>
+                            <button onClick={() => this.setState({isModalVisible:false}) }>close</button>
+
+                            Пожалуйста дайте еще 2 дня, ничего не успеваю! Я все доделаю.
+                            Спасибо
+
+
+                        </div>
+                    ) : null
+                }
+                <button className="button  new-game-btn" onClick={() => this.setState({isModalVisible:true}) }>Rules</button>
                 <button className="button new-game-btn" onClick={() => this.props.onStartNewGame()}>New Game</button>
                 <div>
                     <div className="menu-txt">Size</div>
@@ -45,7 +76,7 @@ export default class Menu extends Component {
                 </div>
                 <div>
                     <div className="switch_box box_3">
-                    <div className="toggle_switch">
+                    <div className="toggle_switch"  onClick = {() => this.onThemeChange()}>
                         <input type="checkbox" className="switch_3"/>
                         <svg className="checkbox" xmlns="http://www.w3.org/2000/svg" style={{ isolation: "isolate" }} viewBox="0 0 168 80">
                             <path className="outer-ring"
@@ -59,6 +90,7 @@ export default class Menu extends Component {
                 </div>
                 </div>
                 <button className="button icon-btn">query_stats</button>
+
             </div>
         );
     }

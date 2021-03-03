@@ -3,6 +3,11 @@ body {
     background: radial-gradient(circle, rgba(143, 252, 239, 0.7) 0%, rgba(178,0,226,1) 38%, rgba(43,0,62,1) 100%);
 }
 
+body.dark {
+  height: 100vh;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.7) 0%, rgb(77, 0, 0) 38%, rgb(0, 0, 0) 100%);
+}
+
 .icon-btn {
     font-family: Material Icons;
 }
@@ -17,6 +22,15 @@ body {
     background-color: transparent;
     border: 1 solid plum;
 }
+
+.triangle {
+  background-image: url('../../assets/triangle.png');
+}
+
+.pent {
+  background-image: url('../../assets/pent.png');
+}
+
 
 .button.replay {
   width: 50px!important;
@@ -146,6 +160,30 @@ border: 1px solid white;
   width: 120px;
 }
 
+.dark .rock {
+  background-image: url('../../assets/rock_dark.png');
+ }
+
+ .dark .scissors {
+  background-image: url('../../assets/scissors_dark.png');
+
+}
+
+.dark .papper {
+  background-image: url('../../assets/papper_dark.png');
+
+}
+
+.dark .lizard {
+  background-image: url('../../assets/lizard_dark.png');
+
+}
+
+.dark .spock {
+  background-image: url('../../assets/spock_dark.png');
+
+}
+
 
 .rock.ch-3 {
     top: 0;
@@ -219,7 +257,13 @@ border: 1px solid white;
   }
 
 
-  /* Switch 3 Specific Style Start */
+  .rules {
+    position: absolute;
+    background-color: plum;
+    font-size: 20px;
+    border-radius: 20px;
+  }
+
 
 
   .toggle_switch{
