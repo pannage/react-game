@@ -8,14 +8,14 @@ export default class Menu extends Component {
 
                 <div>
                     <div className="menu-txt">Size</div>
-                    <button className="button">3</button>
-                    <button className="button">5</button>
+                    <button className="button" onClick={() => this.props.setFieldSize(3)}>3</button>
+                    <button className="button" onClick={() => this.props.setFieldSize(5)}>5</button>
                 </div>
                 <div>
                     <div className="menu-txt">players</div>
 
-                    <button className="button">2</button>
-                    <button className="button">3</button>
+                    <button className="button" onClick={() => this.props.setPlayersNum(2)}>2</button>
+                    <button className="button" onClick={() => this.props.setPlayersNum(3)}>3</button>
                 </div>
                 <div>
                     <div className="switch_box box_3">
