@@ -25,10 +25,14 @@ body.dark {
 
 .triangle {
   background-image: url('../../assets/triangle.png');
+  width: 400px;
+  height: 400px;
 }
 
 .pent {
   background-image: url('../../assets/pent.png');
+  width: 375px;
+  height: 375px;
 }
 
 
@@ -417,4 +421,52 @@ border: 1px solid white;
     }
 
 
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #54005fad;
+    border-top: 1px #020202 solid;
+    box-shadow: 0px 0px 16px #ab3434;
+    z-index: 2;
+  }
+
+  .footer .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 10px 30px;
+  }
+
+  .footer__inner {
+    color: white;
+    font-size: 21px;
+    font-family: cursive;
+  }
+
+  .footer .social-list {
+    display: flex;
+    transition: all 0.3s;
+  }
+
+  .footer .social-list__item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .footer .social-list__item:hover {
+    transition: all 0.3s;
+    transform: scale(1.1);
+  }
+
+  .footer .social-list__item .rsschool-logo {
+    width: 72px;
+  }
+
+  .footer .social-list__item-img {
+    width: 40px;
   }

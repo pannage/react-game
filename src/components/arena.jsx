@@ -13,15 +13,17 @@ export class Arena2 extends Component {
         } else if (this.props.comp2Win)
             this.comp2Win = 'pulse'
         return (
-            <div className="arena2">
+            <div>
 
                 <div className="result">
                     <h3 className="result-message">{this.props.message}</h3>
                     <button className="button replay icon-btn" onClick = {() => this.props.replay()}>replay</button>
                 </div>
+                <div className="arena2">
+                    <div className={`${this.props.pick} arena ${this.playerWin}`}></div>
+                    <div className={`${this.props.comp1} arena ${this.comp1Win}`}></div>
+                </div>
 
-                <div className={`${this.props.pick} arena ${this.playerWin}`}></div>
-                <div className={`${this.props.comp1} arena ${this.comp1Win}`}></div>
             </div>
         );
     }

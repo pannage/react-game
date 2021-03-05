@@ -33,6 +33,28 @@ export default class PlayBoard extends Component {
         this.replay = this.replay.bind(this)
     }
 
+
+
+    saveScore() {
+        const { playerScore, comp1Score, comp2Score } = this.state;
+        let currentLocalStorageItem = JSON.parse(localStorage.getItem('score'))|| [];
+        currentLocalStorageItem.push({
+            playerScore,
+            comp1Score,
+            comp2Score,
+            date: new Date
+        })
+
+        if (currentLocalStorageItem.length > 10) {
+            currentLocalStorageItem.shift()
+        }
+
+        localStorage.setItem('score', JSON.stringify(currentLocalStorageItem));
+    }
+
+
+
+
     startPlay(myPick) {
         const fieldSize = this.props.fieldSize;
         const playersNum = this.props.playersNum;
@@ -60,7 +82,7 @@ export default class PlayBoard extends Component {
         this.setState({isChoiseFieldVisible: false, isArenavisible: true, myPick: myPick})
 
         if (playersNum === 2 ) {
-            setTimeout (() => {this.setState({comp1Pick: pickedImg})}, 1000)
+            this.setState({comp1Pick: pickedImg});
 
             let winner = this.chooseWinner2Playes (myPick, pickedImg)
             if (winner === 'P1'){
@@ -73,7 +95,7 @@ export default class PlayBoard extends Component {
         } else {
             let pickedImg2 = ['rock', 'papper', 'scissors', 'lizard', 'spock'][choosen2]
             // let pickedImg2 = 'rock';
-            setTimeout (() => {this.setState({comp1Pick: pickedImg, comp2Pick: pickedImg2})}, 1000)
+            this.setState({comp1Pick: pickedImg, comp2Pick: pickedImg2})
             this.chooseWinner3Playes (myPick, pickedImg, pickedImg2)
         }
 
@@ -87,6 +109,7 @@ export default class PlayBoard extends Component {
     }
 
     newGame () {
+        this.saveScore()
         this.setState({
             isChoiseFieldVisible: true,
             isArenavisible: false,
