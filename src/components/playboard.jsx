@@ -5,6 +5,13 @@ import {Arena2} from "./arena.jsx";
 import {Arena3} from "./arena.jsx";
 import {ChoiceThree} from "./choice.jsx";
 import {ChoiceFive} from "./choice.jsx";
+import {
+    playAudio,
+    pauseAudio,
+    volumeOff,
+    volumeOn,
+} from '../components/player.js';
+
 
 import '../styles/styles.css';
 
@@ -86,8 +93,12 @@ export default class PlayBoard extends Component {
 
             let winner = this.chooseWinner2Playes (myPick, pickedImg)
             if (winner === 'P1'){
+                setTimeout(() => {playAudio('win', 'effect')}, 500)
+
                 this.setState({isPlayerWin: true, isComp1Win: false, resultMessage: 'You Win', playerScore: this.state.playerScore + 1, comp1Score: this.state.comp1Score - 1})
             } else if (winner === 'P2') {
+
+                setTimeout(() => {playAudio('lose', 'effect')}, 500)
                 this.setState({isPlayerWin: false, isComp1Win: true, resultMessage: 'You Lose', playerScore: this.state.playerScore - 1, comp1Score: this.state.comp1Score + 1})
             } else if (winner === 'draw') {
                 this.setState({isPlayerWin: null, isComp1Win: null, resultMessage: 'Draw'})
@@ -170,8 +181,9 @@ export default class PlayBoard extends Component {
     chooseWinner3Playes (P1Pick, P2Pick, P3Pick) {
         let resultState = {}
         const youAndComp1Win = {isPlayerWin: true, isComp1Win: true, isComp2Win: false,
+
             resultMessage: 'You and Comp1 are Win',
-            playerScore: this.state.playerScore + 1,
+             playerScore: this.state.playerScore + 1,
             comp1Score: this.state.comp1Score + 1,
             comp2Score: this.state.comp2Score - 1}
         const youAndComp2Win = {isPlayerWin: false, isComp1Win: false, isComp2Win: true,
@@ -209,24 +221,31 @@ export default class PlayBoard extends Component {
         let P2P3 = this.chooseWinner2Playes(P2Pick, P3Pick, { p1: 'P2', p2: 'P3' })
         if (P1P2 === P1P3) {
             resultState = youWin
+            setTimeout(() => {playAudio('win', 'effect')}, 500)
         } else if ((P1P2 === 'P1')&&(P1P3 === 'P3') && (P2P3 === 'P2')) {
             resultState = draw
         } else if ((P1P2 === 'P2')&&(P1P3 === 'P3') && (P2P3 === 'P2')) {
             resultState = youAndComp2Lose
+            setTimeout(() => {playAudio('lose', 'effect')}, 500)
         } else if (P1P3 === P2P3) {
             resultState = youAndComp1Lose
         } else if ((P1P2 === 'draw')&&(P1P3 === 'P1')) {
             resultState = youAndComp1Win
+            setTimeout(() => {playAudio('win', 'effect')}, 500)
         } else if ((P1P2 === 'P1')&&(P1P3 === 'draw')) {
             resultState = youAndComp2Win
+            setTimeout(() => {playAudio('win', 'effect')}, 500)
         } else if ((P1P2 === 'P2')||(P1P3 === 'P3')&&(P2P3 === 'draw')) {
             resultState = youLose
+            setTimeout(() => {playAudio('lose', 'effect')}, 500)
         } else if ((P1P2 === 'draw')&&(P1P3 === 'P3')) {
             resultState = youAndComp1Lose
+            setTimeout(() => {playAudio('lose', 'effect')}, 500)
         } else if ((P1P2 === 'draw')&&(P1P3 === 'draw')&&(P2P3 === 'draw')) {
             resultState = draw
         } else if ((P1P2 === 'P2')&&(P1P3 === 'P1') && (P2P3 === 'P2')) {
             resultState = youAndComp2Lose
+            playAudio('lose', 'effect')
         }
 
         this.setState(resultState)
@@ -250,6 +269,7 @@ export default class PlayBoard extends Component {
         return (
             <div className="playboard">
                 {score}
+
                 { this.state.isArenavisible ? arena : null}
                 { this.state.isChoiseFieldVisible ? choiceTable : null }
             </div>

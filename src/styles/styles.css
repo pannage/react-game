@@ -13,14 +13,22 @@ body.dark {
 }
 
 .button {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
+    margin: 0 0 10px 0;
     color: plum;
-    font-size: 3vw;
+    font-size: 30px;
     border-radius: 50%;
     outline: none;
     background-color: transparent;
     border: 1 solid plum;
+}
+
+.button.icon-btn.cancel-btn {
+  color:purple;
+  width: 36px;
+  height: 36px;
+  padding: 0 0 0 0;
 }
 
 .triangle {
@@ -65,7 +73,7 @@ body.dark {
 
 .menu-txt {
     color: plum;
-    font-size: 3vw;
+    font-size: 30px;
 }
 
 .button:hover {
@@ -109,7 +117,7 @@ border: 1px solid white;
     display: flex;
     justify-content: space-around;
     color: plum;
-    font-size: 3vw;
+    font-size: 30px;
 }
 
 .rock,
@@ -248,7 +256,7 @@ border: 1px solid white;
     display: flex;
     max-width: 200px;
     min-width: 200px;
-    height: 200px;
+    height: 80px;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -470,3 +478,14 @@ border: 1px solid white;
   .footer .social-list__item-img {
     width: 40px;
   }
+
+.statistic-wrapper {
+  position: absolute;
+  background-color: plum;
+  z-index: 10;
+  width: 50vw;
+  border-radius: 20px;
+  box-shadow: 7px 7px 31px 0px rgba(0,0,0,0.82);
+
+
+}

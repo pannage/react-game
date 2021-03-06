@@ -74,11 +74,11 @@ export class ChoiceFive extends Component {
             <div className="choice-5">
                 <div className='pent'></div>
                 {/* <img src="./assets/pent.png" alt=""/> */}
-                <div className="rock ch-5" onClick={() => {this.props.start('rock');  playAudio('choice')} } ></div>
-                <div className="scissors ch-5" onClick={() => {this.props.start('scissors');  playAudio('choice')}}></div>
-                <div className="papper ch-5" onClick={() => {this.props.start('papper');  playAudio('choice')}}></div>
-                <div className="lizard ch-5" onClick={() => {this.props.start('lizard');  playAudio('choice')}}></div>
-                <div className="spock ch-5" onClick={() => {this.props.start('spock');  playAudio('choice')}}></div>
+                <div className="rock ch-5" onClick={() => {this.props.start('rock');  playAudio('choice', 'effect')} } ></div>
+                <div className="scissors ch-5" onClick={() => {this.props.start('scissors');  playAudio('choice', 'effect')}}></div>
+                <div className="papper ch-5" onClick={() => {this.props.start('papper');  playAudio('choice', 'effect')}}></div>
+                <div className="lizard ch-5" onClick={() => {this.props.start('lizard');  playAudio('choice', 'effect')}}></div>
+                <div className="spock ch-5" onClick={() => {this.props.start('spock');  playAudio('choice', 'effect')}}></div>
             </div>
         );
     }

@@ -1,7 +1,10 @@
 const audioLevel = new Audio();
 audioLevel.autoplay = 'autoplay'
 audioLevel.loop = 'loop';
+audioLevel.volume = 0.1;
+
 const audioEffect = new Audio();
+audioEffect.volume = 0.1;
 
 export function playAudio(word, playerName = 'main') {
     const player = getPlayer(playerName);
@@ -11,7 +14,6 @@ export function playAudio(word, playerName = 'main') {
 
     player.src = `../../assets/sounds/${word}.mp3`;
     player.load();
-    player.volume = 0.1;
     player.play();
 }
 

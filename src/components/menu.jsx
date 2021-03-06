@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import '../styles/styles.css';
+import {
+    playAudio,
+    pauseAudio,
+    volumeOff,
+    volumeOn,
+} from '../components/player.js';
 
 export default class Menu extends Component {
     constructor(props) {
         super(props)
         this.state ={
             isDark: false,
-            isModalVisible:false
+            isModalVisible:false,
+            isMusicOn: true,
+            isSoundOn: true,
+            musicBtnImg: 'music_note',
+            soundBtnImg: 'volume_up'
         }
 
 
@@ -18,11 +28,45 @@ export default class Menu extends Component {
     }
 
     onThemeChange () {
+        if (this.state.isDark) {
+            pauseAudio()
+            playAudio('music')
+        } else {
+            pauseAudio()
+            playAudio('music-dark')
+        }
         this.setState ({isDark: !this.state.isDark})
             document.body.classList.toggle('dark')
 
+    }
+
+    musicOnOff () {
+        if (this.state.isMusicOn) {
+            pauseAudio('main')
+            this.setState({musicBtnImg:'music_off', isMusicOn: false})
+        } else {
+            if (!this.state.isDark) {
+                playAudio('music')
+
+            } else {
+                playAudio('music-dark')
+            }
+            this.setState({musicBtnImg:'music_note', isMusicOn: true})
+        }
 
     }
+
+    soundOnOff () {
+            if (this.state.isSoundOn) {
+                volumeOff('effect')
+                this.setState({soundBtnImg:'volume_off', isSoundOn: false})
+            } else {
+                volumeOn('effect')
+                    this.setState({soundBtnImg:'volume_up', isSoundOn: true})
+            }
+        }
+
+
 
 
 
@@ -52,17 +96,22 @@ export default class Menu extends Component {
                             <div>q и w - выбор количества играков</div>
                             <div>a и s - выбор поля</div>
                             <div>esc - начать сначала</div>
-                            <button onClick={() => this.setState({isModalVisible:false}) }>close</button>
-
-                            Пожалуйста дайте еще 2 дня, ничего не успеваю! Я все доделаю.
-                            Спасибо
+                            <div>Очки в статистику записываюся после начала новой игры</div>
+                            <button className="button icon-btn cancel-btn" onClick={() => this.setState({isModalVisible:false}) }>cancel</button>
 
 
                         </div>
                     ) : null
                 }
-                <button className="button  new-game-btn" onClick={() => this.setState({isModalVisible:true}) }>Rules</button>
-                <button className="button new-game-btn" onClick={() => this.props.onStartNewGame()}>New Game</button>
+
+                <div>
+                    <button className="button icon-btn" onClick={() =>{this.musicOnOff()} }>{this.state.musicBtnImg}</button>
+                    <button className="button icon-btn" onClick={() =>{this.soundOnOff()} }>{this.state.soundBtnImg}</button>
+                </div>
+
+                <div>
+                    <button className="button new-game-btn" onClick={() => this.props.onStartNewGame()}>New Game</button>
+                </div>
                 <div>
                     <div className="menu-txt">Size</div>
                     <button className="button points-3" onClick={() => this.props.setFieldSize(3)}></button>
@@ -89,7 +138,8 @@ export default class Menu extends Component {
                     </div>
                 </div>
                 </div>
-                <button className="button icon-btn">query_stats</button>
+                <button className="button icon-btn" onClick = {() => this.props.toggleStatisticVisibility()}>query_stats</button>
+                <button className="button new-game-btn" onClick={() => this.setState({isModalVisible:true}) }>Rules</button>
 
             </div>
         );
