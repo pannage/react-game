@@ -37,6 +37,7 @@ body.dark {
   height: 400px;
 }
 
+
 .pent {
   background-image: url('../../assets/pent.png');
   width: 375px;
@@ -424,10 +425,10 @@ border: 1px solid white;
 
     }
 
-    .choice-5 {
-
+    .logo {
+      background-image: url('../../assets/rs-school.png');
+      height: 100px;
     }
-
 
   }
 
