@@ -101,6 +101,7 @@ body.dark {
 
 .header {
     height: 6vw;
+    text-align: center;
 }
 
 .main {
@@ -277,7 +278,17 @@ border: 1px solid white;
     border-radius: 20px;
   }
 
+  .link {
+    color:red;
+    text-align: center;
+    font-size: 20px;
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+  }
 
+  .logo {
+    background-image: url('../../assets/rs-school.png');
+    height: 100px;
+  }
 
   .toggle_switch{
     width: 100px;
@@ -425,10 +436,7 @@ border: 1px solid white;
 
     }
 
-    .logo {
-      background-image: url('../../assets/rs-school.png');
-      height: 100px;
-    }
+
 
   }
 
