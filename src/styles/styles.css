@@ -287,7 +287,8 @@ border: 1px solid white;
 
   .logo {
     background-image: url('../../assets/rs-school.png');
-    height: 100px;
+    height: 71px;
+    width: 200px
   }
 
   .toggle_switch{
